@@ -2,6 +2,7 @@ package Optimization_methods;
 
 import Function.FunctionExecute;
 import Interval.Interval;
+import Util.Util;
 
 public class GoldenSection {
     private Interval i;
@@ -28,7 +29,7 @@ public class GoldenSection {
             x1 = i.getB() - (i.getB() - i.getA()) / proportion;
             x2 = i.getA() + (i.getB() - i.getA()) / proportion;
             if(printing){
-                printing(i.getA(), x1, x2, i.getB(), f.apply(x1), f.apply(x2), itterations);}
+                new Util().printing(i.getA(), x1, x2, i.getB(), f.apply(x1), f.apply(x2), itterations);}
             if (f.apply(x1) >= f.apply(x2))
                 i.setA(x1);
             else
@@ -40,20 +41,12 @@ public class GoldenSection {
         return this;
     }
 
-    private void printing(double ... p){
-        StringBuilder res = new StringBuilder();
-        for(double i:p) {
-            res.append(String.format("%.5g", i)).append("|");
-        }
-        res.append("\n___________________________________________________\n");
-        System.out.print(res.toString());
-    }
 
     @Override
     public String toString() {
-        return "GoldenSectionResult" +
+        return "GoldenSectionResult\t" +
                 "x=" + res_x +
-                ", y=" + res_y;
+                ", y=" + res_y+"\n";
     }
 
     public void printHead(){
